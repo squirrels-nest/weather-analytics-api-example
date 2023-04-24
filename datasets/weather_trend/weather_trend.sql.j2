@@ -1,0 +1,8 @@
+{% from 'datasets/weather_metrics.sql.j2' import get_metrics -%}
+
+SELECT {{ ctx['dim_col'] }} as {{ ctx['alias'] }}
+    {{ get_metrics() }}
+FROM weather
+WHERE {{ ctx['filter_by_col'] }} IN ({{ ctx['time_periods'] }})
+GROUP BY {{ ctx['dim_col'] }}
+ORDER BY {{ ctx['dim_col'] }}
