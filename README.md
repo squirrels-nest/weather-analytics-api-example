@@ -4,21 +4,16 @@ Sample API project using the squirrels framework.
 
 ## Setup
 
-First, create the virtual environment for the project with the necessary libraries installed.
+First, create the virtual environment for the project and activate it.
+
+Then, install the squirrels framework.
 
 ```bash
-pip install pipenv
-pipenv install -r requirements.txt
-```
-
-Next, create a squirrels database profile.
-
-```bash
-squirrels set-profile weather_db --values sqlite /./data/seattle_weather.db "" ""
+pip install --force-reinstall git+https://github.com/squirrels-nest/squirrels.git@dev
 ```
 
 Test that it works!
 
 ```bash
-squirrels run --debug
+squirrels run
 ```
