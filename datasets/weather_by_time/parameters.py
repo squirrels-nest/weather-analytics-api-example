@@ -1,8 +1,8 @@
-from datasets.parameter_options import group_by_options
+from typing import Dict, Any
 import squirrels as sq
 
+from datasets import common as c
 
-def main(*args, **kwargs) -> sq.ParameterSet:
-    return sq.ParameterSet([
-        sq.SingleSelectParameter('group_by', 'Group By', group_by_options),
-    ])
+
+def main(args: Dict[str, Any], *p_args, **kwargs) -> sq.ParameterSet:
+    return sq.ParameterSet([c.group_by_param])

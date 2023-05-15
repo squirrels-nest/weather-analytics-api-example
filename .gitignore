@@ -2,6 +2,3 @@ __pycache__
 /outputs
 /modules
 /venv
-
-Pipfile
-Pipfile.lock

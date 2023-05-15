@@ -44,4 +44,13 @@ filter_by_options = [
 
 
 # Time Period options
-time_period_options = sq.SelectionDataSource('weather_db', 'time_lookup', 'index', 'start_of_time', parent_id_col='time_type_id')
+time_period_options = sq.SelectionDataSource('time_lookup', 'index', 'start_of_time', parent_id_col='time_type_id')
+
+
+# Parameters
+group_by_param = sq.SingleSelectParameter('group_by', 'Group By', group_by_options)
+
+trend_type_parameter = sq.SingleSelectParameter('trend_type', 'Trend Type', trend_type_options)
+filter_by_parameter = sq.SingleSelectParameter('filter_by', 'Filter Time Period By', filter_by_options)
+time_period_parameter = sq.DataSourceParameter(sq.MultiSelectParameter, 'time_period', 'Time Period of', 
+                                                time_period_options, parent=filter_by_parameter)

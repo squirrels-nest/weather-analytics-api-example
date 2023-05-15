@@ -1,15 +1,12 @@
 from typing import Dict, Any
-from datasets.parameter_options import GroupByOption
 import squirrels as sq
 
+from datasets.common import GroupByOption
 
-def get_selected_group_by(prms: sq.ParameterSet) -> GroupByOption:
+
+def main(prms: sq.ParameterSet, args: Dict[str, Any], *p_args, **kwargs) -> Dict[str, Any]:
     group_by_param: sq.SingleSelectParameter = prms['group_by']
-    return group_by_param.get_selected()
-
-
-def main(prms: sq.ParameterSet, proj: Dict[str, str], *args, **kwargs) -> Dict[str, Any]:
-    group_by_option = get_selected_group_by(prms)
+    group_by_option: GroupByOption = group_by_param.get_selected()
 
     return {
         'dim_col': group_by_option.dim_col,

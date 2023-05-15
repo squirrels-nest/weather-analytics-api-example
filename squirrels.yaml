@@ -1,22 +1,25 @@
 modules: []
 
-db_connection: weather_db
+project_variables:
+  product: seattle_weather
+  major_version: 1
+  minor_version: 0
 
-base_path: "/{{product}}/v{{major_version}}"
+db_connections:
+  default: 
+    url: 'sqlite:///./database/seattle_weather.db'
 
 datasets:
   weather_by_time:
     label: Weather by Time of Year
     database_views:
-      weather_by_time:
-        file: weather_by_time.sql.j2
+      aggregate_weather_metrics: aggr_weather_metrics.sql.j2
     final_view: final_view.sql.j2
-
+    
   weather_trend:
     label: Weather Trend
     database_views:
-      weather_trend:
-        file: weather_trend.sql.j2
+      weather_trend: weather_trend.sql.j2
     final_view: weather_trend
 
 settings: {}
