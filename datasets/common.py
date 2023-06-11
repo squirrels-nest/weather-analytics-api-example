@@ -1,7 +1,7 @@
-import squirrels as sq
+import squirrels as sr
 
 # Group bys
-class GroupByOption(sq.SelectParameterOption):
+class GroupByOption(sr.SelectParameterOption):
     def __init__(self, id, label, dim_col, order_by_col = None):
         super().__init__(id, label)
         self.dim_col = dim_col
@@ -31,7 +31,7 @@ trend_type_options = [
 
 
 # Filter By options
-class FilterByOption(sq.SelectParameterOption):
+class FilterByOption(sr.SelectParameterOption):
     def __init__(self, id, label, column) -> None:
         super().__init__(id, label)
         self.column = column
@@ -44,13 +44,17 @@ filter_by_options = [
 
 
 # Time Period options
-time_period_options = sq.SelectionDataSource('time_lookup', 'index', 'start_of_time', parent_id_col='time_type_id')
+time_period_options = sr.SelectionDataSource('time_lookup', 'index', 'start_of_time', parent_id_col='time_type_id')
 
 
 # Parameters
-group_by_param = sq.SingleSelectParameter('group_by', 'Group By', group_by_options)
+class GroupByParameter(sr.SingleSelectParameter):
+    def __init__(self) -> None:
+        super().__init__('group_by', 'Group By', group_by_options)
 
-trend_type_parameter = sq.SingleSelectParameter('trend_type', 'Trend Type', trend_type_options)
-filter_by_parameter = sq.SingleSelectParameter('filter_by', 'Filter Time Period By', filter_by_options)
-time_period_parameter = sq.DataSourceParameter(sq.MultiSelectParameter, 'time_period', 'Time Period of', 
+group_by_param = GroupByParameter()
+
+trend_type_parameter = sr.SingleSelectParameter('trend_type', 'Trend Type', trend_type_options)
+filter_by_parameter = sr.SingleSelectParameter('filter_by', 'Filter Time Period By', filter_by_options)
+time_period_parameter = sr.DataSourceParameter(sr.MultiSelectParameter, 'time_period', 'Time Period of', 
                                                 time_period_options, parent=filter_by_parameter)
