@@ -1,7 +1,7 @@
 from typing import Sequence
 import squirrels as sr
 
-from datasets import common as c
+from datasets import common_params as cp
 
 def main(*args, **kwargs) -> Sequence[sr.Parameter]:
-    return [c.trend_type_parameter, c.filter_by_parameter, c.time_period_parameter]
+    return [cp.trend_type_parameter, cp.filter_by_parameter, cp.time_period_parameter]
